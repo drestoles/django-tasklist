@@ -3,7 +3,7 @@
 {% block content %}
     <ul>
         {% for task in tasks %}
-            <li>{{ task.0 }} - {{ task.1|date:"Y-m-d" }}</li>
+            <li>{{ task.name }} - {{ task.due_date|date:"Y-m-d" }}</li>
         {% endfor %}
     </ul>
 {% endblock %} 

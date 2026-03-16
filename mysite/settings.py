@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 os.environ.setdefault("SECRET_KEY", "django-insecure-xdp6pql)djwir=w=3@2+o7nh!b33!iido$8%qe6^a^j3ffc6ra")
 
 SECRET_KEY = os.environ['DJANGO_SECRET']
-
+# SECRET_KEY = os.getenv('DJANGO_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -88,8 +88,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ["PGDATABASE"],
+        'USER': os.environ["PGUSER"],
+        'PASSWORD': os.environ["PGPASSWORD"],
+        'HOST': os.environ["PGHOST"],
+        'PORT': os.environ["PGPORT"]
     }
 }
 

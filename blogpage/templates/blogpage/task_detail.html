@@ -1,0 +1,21 @@
+{% extends 'blogpage/base_blogpage.html' %}
+
+{% block title %}Task List | {{ task.name }}{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/blogpage_base.css' %}">
+{% endblock %}
+{% block header %}<h3>Task List | {{ task.taskgroup.name }}: {{ task.name }}</h3>{% endblock %}
+
+{% block content %}
+    <a href="{% url 'blogpage:task_list' %}">Return to task list</a>
+    <h1>{{ task.taskgroup.name }}</h1>
+    <h2>Made by: {{ task.profile.user.username }}, Created {{ task.created_on|date:"Y-m-d" }}, Updated last {{ task.updated_on|date:"Y-m-d" }}</h2>
+    <h2 id="task-name">{{ task.name }}</h2>
+    <p>Due on {{ task.due_date|date:"Y-m-d" }}</p>
+
+    {% if task.task_image %}
+        <img src="{{ task.task_image.url }}" alt="task image"/>
+    {% endif %}
+    
+    <a href="{% url 'blogpage:task_update' pk=task.pk %}">Update task</a>
+{% endblock %} 

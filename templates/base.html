@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="main.css">
         <title>{% block title %}Our blogpage{% endblock %}</title>
         {% block styles %} {% endblock %}
     </head>
 
     <body>
-        {% block header %} {% endblock %}
+        {% if user.is_authenticated %}
+            <h3>Hello {{ user.username }}</h3>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+        {% block header %}<h2>Blogpage</h2>{% endblock %}
         <div id="content">
             {% block content %} {% endblock %}
         </div>
